@@ -41,6 +41,17 @@
       </li>
       <li class="nav-item">
         <sidenav-item
+          url="/products"
+          :class="getRoute() === 'products' ? 'active' : ''"
+          :navText="this.$store.state.isRTL ? 'الفواتیر' : 'products'"
+        >
+          <template v-slot:icon>
+            <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+      <li class="nav-item">
+        <sidenav-item
           url="/virtual-reality"
           :class="getRoute() === 'virtual-reality' ? 'active' : ''"
           :navText="
