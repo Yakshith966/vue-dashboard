@@ -1,7 +1,13 @@
-<template>
-  <div class="card">
-    <div class="card-header pb-0">
+<template >
+  <div class="card" >
+    <div class="card-header pb-0" >
       <h6>Homepage</h6>
+      <div class="col-5 w-95 text-end mb-4">
+      <argon-button color="dark"  variant="gradient">
+        <i class="fas fa-plus me-2"></i>
+        Add
+      </argon-button>
+    </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
@@ -14,7 +20,8 @@
                 Title
               </th>
               <th
-                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                class=""
+              
               >
                 Content
               </th>
@@ -33,7 +40,7 @@
           </thead>
           <tbody>
             <tr v-for="(item, index) in items" :key="index">
-              <td>
+              <td style="white-space: normal;">
                 <div class="d-flex px-2 py-1">
                   <div>
                     <img
@@ -42,14 +49,14 @@
                       alt="user1"
                     />
                   </div>
-                  <div class="d-flex flex-column justify-content-center">
+                  <div class="" >
                     <h6 class="mb-0 text-sm">{{ item.title }}</h6>
                     <!-- <p class="text-xs text-secondary mb-0">{{ item.content }}</p> -->
                   </div>
                 </div>
               </td>
-              <td>
-                <p class="text-xs font-weight-bold mb-0">{{ item.content }}</p>
+              <td style="width: 550px;">
+                <p class="text-xs font-weight-bold mb-0" style="white-space: normal; overflow: hidden;">{{ item.content }}</p>
                 <!-- <p class="text-xs text-secondary mb-0">{{ item.organization }}</p> -->
               </td>
               <td>
@@ -96,8 +103,12 @@
 
 <script>
 import axios from "axios";
+import ArgonButton from "@/components/ArgonButton.vue";
 
 export default {
+  components:{ 
+    ArgonButton,
+  },
   name: "authors-table",
   data() {
     return {

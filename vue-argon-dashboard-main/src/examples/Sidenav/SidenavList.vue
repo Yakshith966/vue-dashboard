@@ -19,7 +19,7 @@
         <sidenav-item
           url="/tables"
           :class="getRoute() === 'tables' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'الجداول' : 'Tables'"
+          :navText="this.$store.state.isRTL ? 'الجداول' : 'Homepage'"
         >
           <template v-slot:icon>
             <i
@@ -32,7 +32,7 @@
         <sidenav-item
           url="/billing"
           :class="getRoute() === 'billing' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'الفواتیر' : 'Billing'"
+          :navText="this.$store.state.isRTL ? 'الفواتیر' : 'About'"
         >
           <template v-slot:icon>
             <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
@@ -44,7 +44,7 @@
           url="/virtual-reality"
           :class="getRoute() === 'virtual-reality' ? 'active' : ''"
           :navText="
-            this.$store.state.isRTL ? 'الواقع الافتراضي' : 'Virtual Reality'
+            this.$store.state.isRTL ? 'الواقع الافتراضي' : 'News'
           "
         >
           <template v-slot:icon>

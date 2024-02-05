@@ -39,6 +39,7 @@ const routes = [
     name: "RTL",
     component: RTL,
   },
+  
   {
     path: "/profile",
     name: "Profile",
