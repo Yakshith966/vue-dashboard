@@ -1,0 +1,170 @@
+<template>
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+            <h6>Gallery Images</h6>
+        </div>
+        <div class="card-body pt-3 w-100">
+            <ul class="list-group d-flex flex-row flex-wrap gap-5 w-100 justify-content-center m-auto">
+                <li class="list-group-item border-0 d-flex flex-column col-md-3 mb-3 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="../../assets/img/bg-profile.jpg" alt="Image placeholder"
+                            class="card-img-top pt-0 mt-2 w-100 border-radius-lg" />
+                        <h6 class="mb-3 pt-3">Title</h6>
+                        <p class="mb-3 text-sm">Content goes here enter the content related to this image cdhsvcgsvcac
+                            dc adcvgvg</p>
+                    </div>
+                    <div class="ms-auto  pt-2 pb-0 d-flex">
+                        <a class="btn btn-link text-danger text-gradient px-3" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                        <a class="btn btn-link text-danger text-gradient px-4" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 d-flex flex-column col-md-3 mb-3 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="../../assets/img/bg-profile.jpg" alt="Image placeholder"
+                            class="card-img-top pt-0 mt-2 w-100 border-radius-lg" />
+                        <h6 class="mb-3 pt-3">Title</h6>
+                        <p class="mb-3 text-sm">Content goes here enter the content related to this image cdhsvcgsvcac
+                            dc adcvgvg</p>
+                    </div>
+                    <div class="ms-auto  pt-2 pb-0 d-flex">
+                        <a class="btn btn-link text-danger text-gradient px-3" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                        <a class="btn btn-link text-danger text-gradient px-4" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 d-flex flex-column col-md-3 mb-3 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="../../assets/img/bg-profile.jpg" alt="Image placeholder"
+                            class="card-img-top pt-0 mt-2 w-100 border-radius-lg" />
+                        <h6 class="mb-3 pt-3">Title</h6>
+                        <p class="mb-3 text-sm">Content goes here enter the content related to this image cdhsvcgsvcac
+                            dc adcvgvg</p>
+                    </div>
+                    <div class="ms-auto  pt-2 pb-0 d-flex">
+                        <a class="btn btn-link text-danger text-gradient px-3" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                        <a class="btn btn-link text-danger text-gradient px-4" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 d-flex flex-column col-md-3 mb-3 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="../../assets/img/bg-profile.jpg" alt="Image placeholder"
+                            class="card-img-top pt-0 mt-2 w-100 border-radius-lg" />
+                        <h6 class="mb-3 pt-3">Title</h6>
+                        <p class="mb-3 text-sm">Content goes here enter the content related to this image cdhsvcgsvcac
+                            dc adcvgvg</p>
+                    </div>
+                    <div class="ms-auto  pt-2 pb-0 d-flex">
+                        <a class="btn btn-link text-danger text-gradient px-3" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                        <a class="btn btn-link text-danger text-gradient px-4" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 d-flex flex-column col-md-3 mb-3 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="../../assets/img/bg-profile.jpg" alt="Image placeholder"
+                            class="card-img-top pt-0 mt-2 w-100 border-radius-lg" />
+                        <h6 class="mb-3 pt-3">Title</h6>
+                        <p class="mb-3 text-sm">Content goes here enter the content related to this image cdhsvcgsvcac
+                            dc adcvgvg</p>
+                    </div>
+                    <div class="ms-auto  pt-2 pb-0 d-flex">
+                        <a class="btn btn-link text-danger text-gradient px-3" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                        <a class="btn btn-link text-danger text-gradient px-4" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 d-flex flex-column col-md-3 mb-3 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="../../assets/img/bg-profile.jpg" alt="Image placeholder"
+                            class="card-img-top pt-0 mt-2 w-100 border-radius-lg" />
+                        <h6 class="mb-3 pt-3">Title</h6>
+                        <p class="mb-3 text-sm">Content goes here enter the content related to this image cdhsvcgsvcac
+                            dc adcvgvg</p>
+                    </div>
+                    <div class="ms-auto  pt-2 pb-0 d-flex">
+                        <a class="btn btn-link text-danger text-gradient px-3" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                        <a class="btn btn-link text-danger text-gradient px-4" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 d-flex flex-column col-md-3 mb-3 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="../../assets/img/bg-profile.jpg" alt="Image placeholder"
+                            class="card-img-top pt-0 mt-2 w-100 border-radius-lg" />
+                        <h6 class="mb-3 pt-3">Title</h6>
+                        <p class="mb-3 text-sm">Content goes here enter the content related to this image cdhsvcgsvcac
+                            dc adcvgvg</p>
+                    </div>
+                    <div class="ms-auto  pt-2 pb-0 d-flex">
+                        <a class="btn btn-link text-danger text-gradient px-3" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                        <a class="btn btn-link text-danger text-gradient px-4" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 d-flex flex-column col-md-3 mb-3 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="../../assets/img/bg-profile.jpg" alt="Image placeholder"
+                            class="card-img-top pt-0 mt-2 w-100 border-radius-lg" />
+                        <h6 class="mb-3 pt-3">Title</h6>
+                        <p class="mb-3 text-sm">Content goes here enter the content related to this image cdhsvcgsvcac
+                            dc adcvgvg</p>
+                    </div>
+                    <div class="ms-auto  pt-2 pb-0 d-flex">
+                        <a class="btn btn-link text-danger text-gradient px-3" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                        <a class="btn btn-link text-danger text-gradient px-4" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 d-flex flex-column col-md-3 mb-3 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="../../assets/img/bg-profile.jpg" alt="Image placeholder"
+                            class="card-img-top pt-0 mt-2 w-100 border-radius-lg" />
+                        <h6 class="mb-3 pt-3">Title</h6>
+                        <p class="mb-3 text-sm">Content goes here enter the content related to this image cdhsvcgsvcac
+                            dc adcvgvg</p>
+                    </div>
+                    <div class="ms-auto  pt-2 pb-0 d-flex">
+                        <a class="btn btn-link text-danger text-gradient px-3" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                        <a class="btn btn-link text-danger text-gradient px-4" href="javascript:;">
+                            <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "products-table",
+}
+</script>
