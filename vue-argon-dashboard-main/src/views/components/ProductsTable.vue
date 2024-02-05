@@ -1,7 +1,7 @@
 <template>
     <div class="card mb-4">
         <div class="card-header pb-0">
-            <h6>Gallery Images</h6>
+            <h6>Product Images</h6>
         </div>
         <div class="card-body pt-3 w-100">
             <ul class="list-group d-flex flex-row flex-wrap gap-5 w-100 justify-content-center m-auto">
