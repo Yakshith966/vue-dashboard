@@ -1,5 +1,5 @@
 <template>
-    <div class="card mb-4">
+    <div class="card m-4">
         <div class="card-header pb-0">
             <h6>Product Images</h6>
             <div class="col-5 w-95 text-end mb-4">
