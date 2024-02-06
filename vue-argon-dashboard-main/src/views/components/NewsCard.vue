@@ -132,7 +132,7 @@
                 <a
                 class="btn btn-link text-dark text-gradient px-3"
                 href="javascript:;"
-              >
+                data-toggle="modal" data-target="#exampleModal">
                 <i  class="fas fa-pencil-alt text-dark me-2"
                       aria-hidden="true"></i>Edit
               </a>
