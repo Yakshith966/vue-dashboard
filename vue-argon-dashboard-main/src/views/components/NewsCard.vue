@@ -3,8 +3,45 @@
     <div class="card mb-4">
       <div class="card-header pb-0">
         <h6>News</h6>
+        
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">News</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: none;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form @submit.prevent="submitForm">
+            <div class="mb-3">
+              <label for="imageInput" class="form-label">Image</label>
+              <input type="file" class="form-control" id="imageInput"  accept="image/*">
+            </div>
+            <div class="mb-3">
+              <label for="titleInput" class="form-label">Title</label>
+              <input type="text" class="form-control" id="titleInput" v-model="title">
+            </div>
+            <div class="mb-3">
+              <label for="contentInput" class="form-label">Content</label>
+              <textarea class="form-control" id="contentInput" rows="3" v-model="content"></textarea>
+            </div>
+          </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
         <div class="col-5 w-95 text-end mb-4">
-        <argon-button color="dark"  variant="gradient">
+        <argon-button color="dark"  variant="gradient" data-toggle="modal" data-target="#exampleModal">
           <i class="fas fa-plus me-2"></i>
           Add
         </argon-button>
@@ -239,6 +276,14 @@
   <script>
   import ArgonButton from "@/components/ArgonButton.vue";
   export default {
+    data()
+    {
+      return{
+      image: null,
+      title: '',
+      content: ''
+      }
+    },
     components:{
       ArgonButton
     },
