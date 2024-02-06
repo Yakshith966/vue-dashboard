@@ -26,6 +26,11 @@ const routes = [
     component: Tables,
   },
   {
+    path: "/products",
+    name: "Products",
+    component: Products,
+  },
+  {
     path: "/billing",
     name: "Billing",
     component: Billing,
@@ -45,6 +50,7 @@ const routes = [
     name: "RTL",
     component: RTL,
   },
+
   {
     path: "/profile",
     name: "Profile",

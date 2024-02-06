@@ -11,15 +11,15 @@
       </li>
       <li class="nav-item">
         <sidenav-item url="/tables" :class="getRoute() === 'tables' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'الجداول' : 'Tables'">
+          :navText="this.$store.state.isRTL ? 'الجداول' : 'Homepage'">
           <template v-slot:icon>
-            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+            <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
       <li class="nav-item">
         <sidenav-item url="/billing" :class="getRoute() === 'billing' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'الفواتیر' : 'Billing'">
+          :navText="this.$store.state.isRTL ? 'الفواتیر' : 'About'">
           <template v-slot:icon>
             <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
           </template>
@@ -34,7 +34,7 @@
         </sidenav-item>
       </li>
       <li class="nav-item">
-        <sidenav-item url="/virtual-reality" :class="getRoute() === 'virtual-reality' ? 'active' : ''" :navText="this.$store.state.isRTL ? 'الواقع الافتراضي' : 'Virtual Reality'
+        <sidenav-item url="/virtual-reality" :class="getRoute() === 'virtual-reality' ? 'active' : ''" :navText="this.$store.state.isRTL ? 'الواقع الافتراضي' : 'News'
           ">
           <template v-slot:icon>
             <i class="ni ni-app text-info text-sm opacity-10"></i>

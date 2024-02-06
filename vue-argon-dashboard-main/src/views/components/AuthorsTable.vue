@@ -1,8 +1,96 @@
-<template>
+<template >
   <div class="card">
     <div class="card-header pb-0">
       <h6>Homepage</h6>
+      <div>
+        <div class="col-5 w-95 text-end mb-4">
+          <argon-button color="dark" variant="gradient" @click="openModal">
+            <i class="fas fa-plus me-2"></i>
+            Add
+          </argon-button>
+        </div>
+
+        <!-- Bootstrap Modal -->
+        <div
+          class="modal fade"
+          id="myModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <!-- Your modal content goes here -->
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Item</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div
+      class="modal fade"
+      id="myModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Item</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Your form fields go here -->
+            <form @submit.prevent="handleSubmit">
+              <div class="mb-3">
+                <label for="imageFile" class="form-label">Image File</label>
+                <input type="file" class="form-control" id="imageFile" @change="handleFileChange">
+              </div>
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  v-model="formData.title"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea
+                  class="form-control"
+                  id="content"
+                  rows="3"
+                  v-model="formData.content"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">
@@ -13,11 +101,7 @@
               >
                 Title
               </th>
-              <th
-                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-              >
-                Content
-              </th>
+              <th class="">Content</th>
               <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
@@ -33,7 +117,7 @@
           </thead>
           <tbody>
             <tr v-for="(item, index) in items" :key="index">
-              <td>
+              <td style="white-space: normal">
                 <div class="d-flex px-2 py-1">
                   <div>
                     <img
@@ -42,14 +126,19 @@
                       alt="user1"
                     />
                   </div>
-                  <div class="d-flex flex-column justify-content-center">
+                  <div class="">
                     <h6 class="mb-0 text-sm">{{ item.title }}</h6>
                     <!-- <p class="text-xs text-secondary mb-0">{{ item.content }}</p> -->
                   </div>
                 </div>
               </td>
-              <td>
-                <p class="text-xs font-weight-bold mb-0">{{ item.content }}</p>
+              <td style="width: 550px">
+                <p
+                  class="text-xs font-weight-bold mb-0"
+                  style="white-space: normal; overflow: hidden"
+                >
+                  {{ item.content }}
+                </p>
                 <!-- <p class="text-xs text-secondary mb-0">{{ item.organization }}</p> -->
               </td>
               <td>
@@ -96,11 +185,22 @@
 
 <script>
 import axios from "axios";
+import ArgonButton from "@/components/ArgonButton.vue";
+
+
 
 export default {
+  components: {
+    ArgonButton,
+  },
   name: "authors-table",
   data() {
     return {
+      formData: {
+        imageFile: null,
+        title: '',
+        content: '',
+      },
       items: [],
     };
   },
@@ -109,6 +209,8 @@ export default {
     this.fetchData();
   },
   methods: {
+    
+    
     async fetchData() {
       try {
         const response = await axios.get("http://localhost:8000/api/homepages");
