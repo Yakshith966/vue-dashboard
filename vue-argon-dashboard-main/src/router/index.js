@@ -7,7 +7,7 @@ import RTL from "../views/Rtl.vue";
 import Profile from "../views/Profile.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
-import Products from "../views/Products.vue"
+import Products from "../views/Products.vue";
 
 const routes = [
   {
@@ -36,6 +36,11 @@ const routes = [
     component: Billing,
   },
   {
+    path: "/products",
+    name: "Products",
+    component: Products,
+  },
+  {
     path: "/virtual-reality",
     name: "Virtual Reality",
     component: VirtualReality,
@@ -45,7 +50,7 @@ const routes = [
     name: "RTL",
     component: RTL,
   },
-  
+
   {
     path: "/profile",
     name: "Profile",
@@ -61,7 +66,7 @@ const routes = [
     name: "Signup",
     component: Signup,
   },
-  
+
 ];
 
 const router = createRouter({

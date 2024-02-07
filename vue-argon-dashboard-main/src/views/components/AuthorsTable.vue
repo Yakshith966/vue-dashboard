@@ -4,16 +4,20 @@
       <h6>Homepage</h6>
       <div>
         <div class="col-5 w-95 text-end mb-4">
-          <argon-button color="dark" variant="gradient" @click="openModal">
+          <argon-button
+            color="dark"
+            variant="gradient"
+            @click="openModalAndFetchData"
+            data-toggle="modal"
+            data-target="#exampleModal"
+          >
             <i class="fas fa-plus me-2"></i>
             Add
           </argon-button>
         </div>
-
-        <!-- Bootstrap Modal -->
-        <div
+        <class
           class="modal fade"
-          id="myModal"
+          id="exampleModal"
           tabindex="-1"
           role="dialog"
           aria-labelledby="exampleModalLabel"
@@ -21,73 +25,77 @@
         >
           <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <!-- Your modal content goes here -->
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Item</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Homepage</h5>
                 <button
                   type="button"
                   class="close"
                   data-dismiss="modal"
                   aria-label="Close"
+                  style="border: none"
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+              <div class="modal-body">
+                <form @submit.prevent="submitForm">
+                  <div class="mb-3">
+                    <label for="imageInput" class="form-label">Image</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="imageInput"
+                      @change="handleImageChange"
+                      accept="image/*"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="titleInput" class="form-label">Title</label>
+                    <div v-if="!title" class="text-danger">
+                      {{ errorMessage.title }}
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="titleInput"
+                      v-model="title"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="contentInput" class="form-label">Content</label>
+                    <textarea
+                      class="form-control"
+                      id="contentInput"
+                      rows="3"
+                      v-model="content"
+                    ></textarea>
+                    <div v-if="!content" class="text-danger">
+                      {{ errorMessage.content }}
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  @click="submitForm"
+                  
+                >
+                <!-- :data-dismiss="errorMessage.title!='' && errorMessage.content!='' ? 'modal' : null"  -->
+                  Save changes
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="myModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Item</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <!-- Your form fields go here -->
-            <form @submit.prevent="handleSubmit">
-              <div class="mb-3">
-                <label for="imageFile" class="form-label">Image File</label>
-                <input type="file" class="form-control" id="imageFile" @change="handleFileChange">
-              </div>
-              <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="title"
-                  v-model="formData.title"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="content" class="form-label">Content</label>
-                <textarea
-                  class="form-control"
-                  id="content"
-                  rows="3"
-                  v-model="formData.content"
-                ></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
+        </class>
       </div>
     </div>
 
@@ -115,7 +123,10 @@
               <th class="text-secondary opacity-7"></th>
             </tr>
           </thead>
-          <tbody>
+          <div v-if="loading == true" style="padding-left: 100%">
+            <LoadingBar />
+          </div>
+          <tbody v-else>
             <tr v-for="(item, index) in items" :key="index">
               <td style="white-space: normal">
                 <div class="d-flex px-2 py-1">
@@ -146,6 +157,9 @@
                   <a
                     class="btn btn-link text-dark px-3 mb-0"
                     href="javascript:;"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    @click="populateForm(item)"
                   >
                     <i
                       class="fas fa-pencil-alt text-dark me-2"
@@ -185,23 +199,32 @@
 
 <script>
 import axios from "axios";
+import LoadingBar from "../components/LoadingBar.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
-
-
 
 export default {
   components: {
     ArgonButton,
+    LoadingBar,
   },
   name: "authors-table",
   data() {
     return {
       formData: {
         imageFile: null,
-        title: '',
-        content: '',
+        title: "",
+        content: "",
       },
+      
       items: [],
+      image: null,
+      loading: "",
+      title: "",
+      content: "",
+      errorMessage: {
+        title: "",
+        content: "",
+      },
     };
   },
   mounted() {
@@ -209,12 +232,108 @@ export default {
     this.fetchData();
   },
   methods: {
-    
-    
-    async fetchData() {
+    openModalAndFetchData() {
+      // Call the openModal method to open the modal
+
+      // Fetch data immediately after opening the modal
+      // await this.fetchData();
+      this.clearForm();
+    },
+    handleImageChange(event) {
+      // Update image data when a file is selected
+      this.image = event.target.files[0];
+    },
+    closeModal() {
+      // Close the modal
+      this.$refs.exampleModalRef.hide();
+      // Fetch data and clear form
+      this.fetchData();
+      this.clearForm();
+    },
+    clearForm() {
+      this.title = "";
+      this.content = "";
+      this.image = null;
+      this.errorMessage.title = "";
+      this.errorMessage.content = "";
+    },
+    populateForm(item) {
+      this.title = item.title;
+      this.content = item.content;
+      // this.clearForm();
+      // You may need additional logic to handle image data
+      // For example, you could set this.image = item.logo_url;
+    },
+    async submitForm() {
       try {
-        const response = await axios.get("http://localhost:8000/api/homepages");
-        this.items = response.data.data;
+        if (!this.title || !this.content) {
+          this.errorMessage.title = "Title is required";
+          this.errorMessage.content = "content is required";
+          return;
+          // throw new Error("Title and Content are required");
+        }
+        // Create a new FormData object
+        const formData = new FormData();
+        // Append form data
+        formData.append("title", this.title);
+        formData.append("content", this.content);
+        formData.append("logo_url", this.image);
+
+        // Send formData to the backend
+        const response = await axios.post(
+          "http://localhost:8000/api/homepages",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data", // Set Content-Type header for FormData
+            },
+          }
+        );
+
+        console.log("API Response:", response.data);
+        // Reset form fields
+        this.title = "";
+        this.content = "";
+        this.image = null;
+        this.errorMessage.title = "";
+        this.errorMessage.content = "";
+
+        this.fetchData();
+      } catch (error) {
+        console.error("API Error:", error);
+        this.errorMessage =
+          error.response.data.error ||
+          "An error occurred while submitting the form";
+      }
+    },
+
+    // async fetchData() {
+    //   this.loading = true;
+    //   try {
+
+    //     const response = await axios.get("http://localhost:8000/api/homepages");
+    //     this.items = response.data.data;
+    //     this.clearForm();
+    //     this.loading = false;
+    //   } catch (error) {
+    //     console.error("Error fetching data:", error);
+    //   }
+    // },
+    async fetchData() {
+      this.loading = true;
+      try {
+        await axios
+          .get(`http://localhost:8000/api/homepages`)
+          .then((result) => {
+            this.items = result.data.data;
+            setTimeout(() => {
+              this.loading = false;
+              this.clearForm();
+            }, 1000);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       } catch (error) {
         console.error("Error fetching data:", error);
       }

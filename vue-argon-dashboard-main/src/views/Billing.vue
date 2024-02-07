@@ -9,24 +9,24 @@
           <div class="col-xl-20 mt-5">
             <div class="row">
               <div class="col-md-6">
-             
+
               </div>
               <OperationsCardVue />
-             
-              </div>
+
             </div>
           </div>
-          
         </div>
+
       </div>
-      
     </div>
-    <div class="row">
-      <div class="col-md-7">
-        
-      </div>
-      
+
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+
     </div>
+
+  </div>
 </template>
 
 <script>
@@ -41,11 +41,11 @@ import OperationsCardVue from './components/OperationsCard.vue';
 export default {
   name: "Billing",
   components: {
-    
+
     OperationsCardVue,
-    
+
     BillingCard,
-    
+
   },
   data() {
     return {
