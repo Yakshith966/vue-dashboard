@@ -33,6 +33,7 @@
                   data-dismiss="modal"
                   aria-label="Close"
                   style="border: none"
+                  ref="closeBtn"
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -87,9 +88,8 @@
                   type="button"
                   class="btn btn-primary"
                   @click="submitForm"
-                  
                 >
-                <!-- :data-dismiss="errorMessage.title!='' && errorMessage.content!='' ? 'modal' : null"  -->
+                  <!-- :data-dismiss="errorMessage.title!='' && errorMessage.content!='' ? 'modal' : null"  -->
                   Save changes
                 </button>
               </div>
@@ -174,10 +174,57 @@
                   <a
                     class="btn btn-link text-danger text-gradient px-3 mb-0"
                     href="javascript:;"
+                    data-toggle="modal"
+                    data-target="#confirmDeleteModal"
                   >
                     <i class="far fa-trash-alt me-2" aria-hidden="true"></i
                     >Delete
                   </a>
+                </div>
+                <div
+                  class="modal"
+                  id="confirmDeleteModal"
+                  tabindex="-1"
+                  role="dialog"
+                >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Confirm Deletion</h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                          ref="closeDeleteBtn"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to delete this record?
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-dismiss="modal"
+                          :id="'closeModal'+item.id"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-danger"
+                          @click="
+                     
+                      deleteRecords(item)"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </td>
               <!----- <td class="align-middle text-center text-sm">
@@ -210,12 +257,13 @@ export default {
   name: "authors-table",
   data() {
     return {
+      selectedAppData: "",
       formData: {
         imageFile: null,
         title: "",
         content: "",
       },
-      
+
       items: [],
       image: null,
       loading: "",
@@ -289,7 +337,7 @@ export default {
             },
           }
         );
-
+        this.$refs.closeBtn.click();
         console.log("API Response:", response.data);
         // Reset form fields
         this.title = "";
@@ -336,6 +384,26 @@ export default {
           });
       } catch (error) {
         console.error("Error fetching data:", error);
+      }
+    },
+    async deleteRecords(application) {
+      try {
+        const response = await axios.delete(
+          `http://localhost:8000/api/homedelete/${application.id}`
+        );
+        console.log(response);
+
+        if (response.status === 200) {
+          // document.getElementById('closeModal'+this.application.id).click();
+          this.$refs.closeDeleteBtn.click();
+          this.fetchData();
+          this.selectedAppData = "";
+        } else {
+          // this.$snotify.success('Something went wrong');
+        }
+      } catch (error) {
+        console.log(this.application);
+        // alert("Something went wrong");
       }
     },
   },
