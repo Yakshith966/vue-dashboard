@@ -15,87 +15,6 @@
             Add
           </argon-button>
         </div>
-        <class
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Homepage</h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  style="border: none"
-                  ref="closeBtn"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form @submit.prevent="submitForm">
-                  <div class="mb-3">
-                    <label for="imageInput" class="form-label">Image</label>
-                    <input
-                      type="file"
-                      class="form-control"
-                      id="imageInput"
-                      @change="handleImageChange"
-                      accept="image/*"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="titleInput" class="form-label">Title</label>
-                    <div v-if="!title" class="text-danger">
-                      {{ errorMessage.title }}
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="titleInput"
-                      v-model="title"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="contentInput" class="form-label">Content</label>
-                    <textarea
-                      class="form-control"
-                      id="contentInput"
-                      rows="3"
-                      v-model="content"
-                    ></textarea>
-                    <div v-if="!content" class="text-danger">
-                      {{ errorMessage.content }}
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  @click="submitForm"
-                >
-                  <!-- :data-dismiss="errorMessage.title!='' && errorMessage.content!='' ? 'modal' : null"  -->
-                  Save changes
-                </button>
-              </div>
-            </div>
-          </div>
-        </class>
       </div>
     </div>
 
@@ -196,7 +115,7 @@
                           class="close"
                           data-dismiss="modal"
                           aria-label="Close"
-                          ref="closeDeleteBtn"
+                          :id="'closeModal' + selectedAppData.id"
                         >
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -209,16 +128,13 @@
                           type="button"
                           class="btn btn-secondary"
                           data-dismiss="modal"
-                          :id="'closeModal'+item.id"
                         >
                           Cancel
                         </button>
                         <button
                           type="button"
                           class="btn btn-danger"
-                          @click="
-                     
-                      deleteRecords(item)"
+                          @click="(selectedAppData = item), deleteRecords(item)"
                         >
                           Delete
                         </button>
@@ -236,6 +152,102 @@
               <td class="align-middle">
                 <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">Edit</a>
               </td> -->
+              <class
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Homepage
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        style="border: none"
+                        :id="'closeModal1' + selectedAppData.id"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form @submit.prevent="submitForm">
+                        <div class="mb-3">
+                          <label for="imageInput" class="form-label"
+                            >Image</label
+                          >
+                          <input
+                            type="file"
+                            class="form-control"
+                            id="imageInput"
+                            @change="handleImageChange"
+                            accept="image/*"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="titleInput" class="form-label"
+                            >Title</label
+                          >
+                          <div v-if="!title" class="text-danger">
+                            {{ errorMessage.title }}
+                          </div>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="titleInput"
+                            v-model="title"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="contentInput" class="form-label"
+                            >Content</label
+                          >
+                          <textarea
+                            class="form-control"
+                            id="contentInput"
+                            rows="3"
+                            v-model="content"
+                          ></textarea>
+                          <div v-if="!content" class="text-danger">
+                            {{ errorMessage.content }}
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <!-- <button
+                  type="button"
+                  class="btn btn-primary"
+                  @click="submitForm"
+                >
+                   :data-dismiss="errorMessage.title!='' && errorMessage.content!='' ? 'modal' : null" 
+                  Save changes
+                </button> -->
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        @click="submitForm(item)"
+                      >
+                        {{ isEditMode ? "Update" : "Save changes" }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </class>
             </tr>
           </tbody>
         </table>
@@ -263,6 +275,7 @@ export default {
         title: "",
         content: "",
       },
+      isEditMode: false,
 
       items: [],
       image: null,
@@ -285,6 +298,7 @@ export default {
 
       // Fetch data immediately after opening the modal
       // await this.fetchData();
+      this.isEditMode = false;
       this.clearForm();
     },
     handleImageChange(event) {
@@ -308,36 +322,62 @@ export default {
     populateForm(item) {
       this.title = item.title;
       this.content = item.content;
+      this.isEditMode = true;
       // this.clearForm();
       // You may need additional logic to handle image data
       // For example, you could set this.image = item.logo_url;
     },
-    async submitForm() {
+    async submitForm(items) {
       try {
         if (!this.title || !this.content) {
           this.errorMessage.title = "Title is required";
-          this.errorMessage.content = "content is required";
+          this.errorMessage.content = "Content is required";
           return;
-          // throw new Error("Title and Content are required");
         }
-        // Create a new FormData object
+
         const formData = new FormData();
-        // Append form data
         formData.append("title", this.title);
         formData.append("content", this.content);
         formData.append("logo_url", this.image);
 
-        // Send formData to the backend
-        const response = await axios.post(
-          "http://localhost:8000/api/homepages",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data", // Set Content-Type header for FormData
-            },
-          }
-        );
-        this.$refs.closeBtn.click();
+        // const formData1 = new FormData();
+        // formData.append("title", selectedItemId.title);
+        // formData.append("content", selectedItemId.content);
+        // formData.append("logo_url", selectedItemId.image);
+
+        let response;
+        if (this.isEditMode) {
+          // Update record
+          response = await axios.patch(
+            `http://localhost:8000/api/homeupdate/${items.id}`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data", // Set Content-Type header for FormData
+              },
+            }
+            
+          );
+        } else {
+          // Add new record
+          response = await axios.post(
+            "http://localhost:8000/api/homepages",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data", // Set Content-Type header for FormData
+              },
+            }
+          );
+        }
+
+        // Close the modal
+        document
+            .getElementById("closeModal1" + this.selectedAppData.id)
+            .click();
+        console.log(this.selectedAppData);
+        // this.selectedAppData="";
+
         console.log("API Response:", response.data);
         // Reset form fields
         this.title = "";
@@ -347,11 +387,14 @@ export default {
         this.errorMessage.content = "";
 
         this.fetchData();
+
+        // Reset isEditMode to false after successful update
+        this.isEditMode = false;
       } catch (error) {
         console.error("API Error:", error);
-        this.errorMessage =
-          error.response.data.error ||
-          "An error occurred while submitting the form";
+        // this.errorMessage =
+        //   error.response.data.error ||
+        //   "An error occurred while submitting the form";
       }
     },
 
@@ -394,8 +437,10 @@ export default {
         console.log(response);
 
         if (response.status === 200) {
-          // document.getElementById('closeModal'+this.application.id).click();
-          this.$refs.closeDeleteBtn.click();
+          document
+            .getElementById("closeModal" + this.selectedAppData.id)
+            .click();
+          // this.$refs.closeDeleteBtn.click();
           this.fetchData();
           this.selectedAppData = "";
         } else {
