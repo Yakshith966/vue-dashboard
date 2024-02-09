@@ -28,7 +28,11 @@
               >
                 Title
               </th>
-              <th class="">Content</th>
+              <th
+                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >
+                Content
+              </th>
               <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
@@ -78,7 +82,8 @@
                     href="javascript:;"
                     data-toggle="modal"
                     data-target="#exampleModal"
-                    @click="populateForm(item)"
+                        @click="(selectedAppData = item),
+                   populateForm(item)"
                   >
                     <i
                       class="fas fa-pencil-alt text-dark me-2"
@@ -95,6 +100,7 @@
                     href="javascript:;"
                     data-toggle="modal"
                     data-target="#confirmDeleteModal"
+                    @click='(selectedAppData = item)'
                   >
                     <i class="far fa-trash-alt me-2" aria-hidden="true"></i
                     >Delete
@@ -134,7 +140,7 @@
                         <button
                           type="button"
                           class="btn btn-danger"
-                          @click="(selectedAppData = item), deleteRecords(item)"
+                          @click=" deleteRecords(item)"
                         >
                           Delete
                         </button>
@@ -152,7 +158,7 @@
               <td class="align-middle">
                 <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">Edit</a>
               </td> -->
-              <class
+              <div
                 class="modal fade"
                 id="exampleModal"
                 tabindex="-1"
@@ -247,7 +253,7 @@
                     </div>
                   </div>
                 </div>
-              </class>
+              </div>
             </tr>
           </tbody>
         </table>
@@ -327,7 +333,7 @@ export default {
       // You may need additional logic to handle image data
       // For example, you could set this.image = item.logo_url;
     },
-    async submitForm(items) {
+    async submitForm() {
       try {
         if (!this.title || !this.content) {
           this.errorMessage.title = "Title is required";
@@ -348,15 +354,19 @@ export default {
         let response;
         if (this.isEditMode) {
           // Update record
-          response = await axios.patch(
-            `http://localhost:8000/api/homeupdate/${items.id}`,
-            formData,
+          response = await axios.post(
+            `http://localhost:8000/api/homeupdate/${this.selectedAppData.id}`,
+            {
+              logo_url: this.image,
+              title: this.title,
+              content: this.content,
+              _method:'PATCH'
+            },
             {
               headers: {
-                "Content-Type": "multipart/form-data", // Set Content-Type header for FormData
+                "Content-Type": "multipart/form-data", 
               },
             }
-            
           );
         } else {
           // Add new record
@@ -373,15 +383,17 @@ export default {
 
         // Close the modal
         document
-            .getElementById("closeModal1" + this.selectedAppData.id)
-            .click();
-        console.log(this.selectedAppData);
-        // this.selectedAppData="";
+          .getElementById("closeModal1" + this.selectedAppData.id)
+          .click();
+        console.log(this.formData);
+        this.selectedAppData = "";
 
         console.log("API Response:", response.data);
+        console.log("API Response:", this.title);
         // Reset form fields
-        this.title = "";
-        this.content = "";
+        // this.title = "";
+        // this.content = "";
+        
         this.image = null;
         this.errorMessage.title = "";
         this.errorMessage.content = "";
@@ -429,10 +441,10 @@ export default {
         console.error("Error fetching data:", error);
       }
     },
-    async deleteRecords(application) {
+    async deleteRecords() {
       try {
         const response = await axios.delete(
-          `http://localhost:8000/api/homedelete/${application.id}`
+          `http://localhost:8000/api/homedelete/${this.selectedAppData.id}`
         );
         console.log(response);
 
