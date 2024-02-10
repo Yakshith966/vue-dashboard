@@ -55,9 +55,9 @@
                 <div class="d-flex px-2 py-1">
                   <div>
                     <img
-                      src="../../assets/img/team-2.jpg"
+                      :src="basePath + item.logo_url"
+                      alt="Image"
                       class="avatar avatar-sm me-3"
-                      alt="user1"
                     />
                   </div>
                   <div class="">
@@ -82,8 +82,7 @@
                     href="javascript:;"
                     data-toggle="modal"
                     data-target="#exampleModal"
-                        @click="(selectedAppData = item),
-                   populateForm(item)"
+                    @click="(selectedAppData = item), populateForm(item)"
                   >
                     <i
                       class="fas fa-pencil-alt text-dark me-2"
@@ -100,7 +99,7 @@
                     href="javascript:;"
                     data-toggle="modal"
                     data-target="#confirmDeleteModal"
-                    @click='(selectedAppData = item)'
+                    @click="selectedAppData = item"
                   >
                     <i class="far fa-trash-alt me-2" aria-hidden="true"></i
                     >Delete
@@ -140,7 +139,7 @@
                         <button
                           type="button"
                           class="btn btn-danger"
-                          @click=" deleteRecords(item)"
+                          @click="deleteRecords(item)"
                         >
                           Delete
                         </button>
@@ -189,6 +188,13 @@
                           <label for="imageInput" class="form-label"
                             >Image</label
                           >
+                          <img
+                            :src="basePath + this.selectedAppData.logo_url"
+                            alt="Image"
+                            width="50px"
+                            class="avatar avatar-sm me-3"
+                            v-show="isEditMode"
+                          />
                           <input
                             type="file"
                             class="form-control"
@@ -285,6 +291,7 @@ export default {
 
       items: [],
       image: null,
+      basePath: "http://demo.localhost:8000/storage/images/",
       loading: "",
       title: "",
       content: "",
@@ -304,12 +311,15 @@ export default {
 
       // Fetch data immediately after opening the modal
       // await this.fetchData();
+      this.selectedAppData = "";
+      this.image = "";
       this.isEditMode = false;
       this.clearForm();
     },
     handleImageChange(event) {
       // Update image data when a file is selected
       this.image = event.target.files[0];
+      // this.selectedImageSrc = URL.createObjectURL(this.selectedImage);
     },
     closeModal() {
       // Close the modal
@@ -360,11 +370,11 @@ export default {
               logo_url: this.image,
               title: this.title,
               content: this.content,
-              _method:'PATCH'
+              _method: "PATCH",
             },
             {
               headers: {
-                "Content-Type": "multipart/form-data", 
+                "Content-Type": "multipart/form-data",
               },
             }
           );
@@ -393,7 +403,7 @@ export default {
         // Reset form fields
         // this.title = "";
         // this.content = "";
-        
+
         this.image = null;
         this.errorMessage.title = "";
         this.errorMessage.content = "";
