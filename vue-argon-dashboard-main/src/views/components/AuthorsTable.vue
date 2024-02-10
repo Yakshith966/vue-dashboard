@@ -188,13 +188,9 @@
                           <label for="imageInput" class="form-label"
                             >Image</label
                           >
-                          <img
-                            :src="basePath + this.selectedAppData.logo_url"
-                            alt="Image"
-                            width="50px"
-                            class="avatar avatar-sm me-3"
-                            v-show="isEditMode"
-                          />
+                          <div v-if="!image" class="text-danger">
+                            {{ errorMessage.image }}
+                          </div>
                           <input
                             type="file"
                             class="form-control"
@@ -202,6 +198,7 @@
                             @change="handleImageChange"
                             accept="image/*"
                           />
+                          
                         </div>
                         <div class="mb-3">
                           <label for="titleInput" class="form-label"
@@ -345,9 +342,10 @@ export default {
     },
     async submitForm() {
       try {
-        if (!this.title || !this.content) {
+        if (!this.title || !this.content || !this.image) {
           this.errorMessage.title = "Title is required";
           this.errorMessage.content = "Content is required";
+          this.errorMessage.image = "Image file is required";
           return;
         }
 
@@ -407,6 +405,7 @@ export default {
         this.image = null;
         this.errorMessage.title = "";
         this.errorMessage.content = "";
+        this.errorMessage.image = "";
 
         this.fetchData();
 
