@@ -7,4 +7,4 @@ Key Features:
 - **Image Upload**: Seamlessly upload slide images and carousel content to enhance the visual appeal of your website.
 - **User Authentication**: Secure login functionality ensures only authorized users can access and manage the dashboard, safeguarding sensitive information.
   
-With our Vue.js Admin Dashboard, managing your website has never been more efficient or user-friendly. Experience the power of simplified administration today!
+With our Vue.js Admin Dashboard, managing your website has never been more efficient or user-friendly. Experience the power of simplified administration 
