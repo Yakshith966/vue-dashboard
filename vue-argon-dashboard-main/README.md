@@ -73,17 +73,7 @@ Quick start options:
 
 - Download from [Creative Tim](https://www.creative-tim.com/product/vue-argon-dashboard?ref=readme-vad).
 
-## Terminal Commands
-
-1. Download and Install NodeJs LTS version from [NodeJs Official Page](https://nodejs.org/en/download/).
-2. Navigate to the root ./ directory of the product and run `npm install` to install our local dependencies.
-
-## Documentation
-
-The documentation for the Vue Argon Dashboard 2 is hosted at our [website](https://www.creative-tim.com/learning-lab/vue/overview/argon-dashboard/?ref=readme-vad).
-
-### What's included
-
+##
 Within the download you'll find the following directories and files:
 
 ```
