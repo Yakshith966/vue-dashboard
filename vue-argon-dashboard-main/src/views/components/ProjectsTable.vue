@@ -326,7 +326,7 @@ export default {
           }
         );
 
-        // this.$refs.imgDeleteBtn.click();
+        
         document
           .getElementById("closeModal" + this.selectedAppData.id)
           .click();
@@ -411,4 +411,4 @@ export default {
     },
   },
 };
-</script>
+</script> 
